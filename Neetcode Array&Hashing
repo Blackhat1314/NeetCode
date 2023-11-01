@@ -1,0 +1,44 @@
+Neetcode Array&Hashing 
+*********************************
+1.Valid AnaGram -- Easy 
+
+**Intuition*
+To solve the anagram problem, we can count the frequency of each letter in both strings and compare them. 
+If the frequencies of all letters are the same in both strings, 
+then the two strings are anagrams of each other.
+
+*Approach*
+We can use an integer array freq of length 26 to keep track of the frequency of each letter in the two strings. 
+We first check if the length of both strings is same. If not, we return false because anagrams must have the same length. 
+We loop through each character in both strings and increment the frequency of the corresponding letter in s and decrement the frequency of the corresponding letter in t.
+Finally, we loop through the freq array and check if all requencies are zero. If not, we return false. 
+If all frequencies are zero, we return true because both strings are anagrams of each other.
+
+In the ASCII character encoding, 'a' has the value 97, and 'c' has the value 99. So, when you calculate c - 'a', it would be:
+99 (ASCII value of 'c') - 97 (ASCII value of 'a') = 2
+so we increase the value at index 2 while itrating s.
+same we will decrease the value at index 2 if we find same element in t.
+
+*Code*
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        int[] arr = new int[26];
+        
+        for(int i=0;i<s.length();i++){
+            arr[s.charAt(i)-'a']++;
+            arr[t.charAt(i)-'a']--;
+        }
+
+        for(int a:arr){
+            if(a>0 || a<0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
