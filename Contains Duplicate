@@ -1,0 +1,24 @@
+Neetcode Array&Hashing 
+*********************************
+2.Contains Duplicate-- Easy 
+
+Intution
+We store all elements in hashmap because it contains unique values.
+
+Approach
+We fill start filling hashmap with elemets , before filling we always check that if this contains or not , if any elements contains we reurn true other wise false.
+
+Code
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet();
+
+        for(int a:nums){
+            if(set.contains(a)){
+                return true;
+            }
+            set.add(a);
+        }
+        return false;
+    }
+}
