@@ -1,0 +1,40 @@
+Neetcode Array&Hashing 
+*********************************
+3.Two Sum -- Easy 
+
+Intution:
+We have to find sum of two numbers which is equal to a targer we can achive this by Checking each and every number with other , this solution will be taking O(n2) time complexicity.
+We have to Use HashMap to solve this problem
+We will store elements as key and indexes as their value .
+
+Approach:
+We will Itrate through all elements one by one and try find (Target-1st_element=2nd_Emlemets) means if we have one elements we can find onther by subtracting from target 
+After subtracting we will find the 2nd elemets in hashmap so 2 cases will happen.
+
+Case 1 : If we Could't find the element in hashMap we will add the elements as key adn their index as value  
+         map.put(arr[i],i)
+
+Case 2: If we found that elements in hashmap as key 
+        map.ContainsKey(arr[i])
+        we will get the key and value and return the current index with value as well as the elements we found inside hashmap
+
+Code:
+    class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map = new HashMap();
+        int[] result = new int[2];
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(target-nums[i])){
+                result[0]=map.get(target-nums[i]);
+                result[1]=i;
+                return result;
+            }
+            else{
+                map.put(nums[i],i);
+            }
+        }
+        
+        return result;
+
+    }
+  }
